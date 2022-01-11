@@ -40,7 +40,7 @@
         <!-- 发送短信验证码按钮 -->
         <template #button>
           <!-- time倒计时时间 -->
-          <van-count-down v-if="isCountDownShow" :time="1000 * 10" format="ss s"  @finish="isCountDownShow=false"/>
+          <van-count-down v-if="isCountDownShow" :time="1000 *600 " format="ss s后获取"  @finish="isCountDownShow=false"/>
           <van-button
             v-else
             class="send-sms-btn"
@@ -143,6 +143,8 @@ export default {
         this.$toast('发送成功')
         // 发送失败，关闭倒计时
       } catch (err) {
+        // 发送失败关闭倒计时
+        this.isCountDownShow = false
         if (err.response.status === 429) {
           this.$toast('发送过于频繁,一分钟后重试')
           console.log('发送过于频繁,一分钟后重试', err)
