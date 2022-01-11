@@ -40,7 +40,7 @@
         <!-- 发送短信验证码按钮 -->
         <template #button>
           <!-- time倒计时时间 -->
-          <van-count-down v-if="isCountDownShow" :time="1000 *600 " format="ss s后获取"  @finish="isCountDownShow=false"/>
+          <van-count-down v-if="isCountDownShow" :time="1000 *60 " format="ss s后获取"  @finish="isCountDownShow=false"/>
           <van-button
             v-else
             class="send-sms-btn"
@@ -74,8 +74,8 @@ export default {
   data () {
     return {
       user: {
-        mobile: '', // 手机号
-        code: '' // 验证码
+        mobile: '13911111111', // 手机号
+        code: '246810' // 验证码
       },
       // 配置ruler手机号 手机验证码验证规则
       userFormRulers: {
@@ -111,8 +111,10 @@ export default {
       // 3.提交表单请求登陆
       try {
         // try里面的一定是成功的
-        const res = await login(user)
-        console.log('登陆成功', res)
+        const { data } = await login(user)
+        // commit传给data token值
+        this.$store.commit('setUser', data.data)
+        console.log('登陆成功', data)
         this.$toast.success('登陆成功')
       } catch (err) {
         // catch一定是失败的

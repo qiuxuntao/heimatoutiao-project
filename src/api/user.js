@@ -10,6 +10,7 @@ export const login = data => {
   })
 }
 
+// 手机号一分钟只能发一次验证码
 export const sendSms = mobile => {
   return request({
     method: 'GET',
