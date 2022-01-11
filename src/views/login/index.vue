@@ -40,8 +40,9 @@
         <!-- 发送短信验证码按钮 -->
         <template #button>
           <!-- time倒计时时间 -->
-          <van-count-down :time="1000*10" format="ss s"/>
+          <van-count-down v-if="isCountDownShow" :time="1000 * 10" format="ss s"  @finish="isCountDownShow=false"/>
           <van-button
+            v-else
             class="send-sms-btn"
             round
             size="small"
@@ -86,7 +87,8 @@ export default {
           { required: true, message: '验证码不能为空' },
           { pattern: /^\d{6}$/, message: '验证码格式错误' }
         ]
-      }
+      },
+      isCountDownShow: false// 是否显示倒计时
     }
   },
   computed: {},
@@ -133,6 +135,7 @@ export default {
       }
 
       // 2. 验证通过，显示倒计时
+      this.isCountDownShow = true
       // 3. 请求发送验证码
     }
   }
