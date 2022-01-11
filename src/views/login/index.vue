@@ -39,6 +39,8 @@
 
         <!-- 发送短信验证码按钮 -->
         <template #button>
+          <!-- time倒计时时间 -->
+          <van-count-down :time="1000*10" format="ss s"/>
           <van-button
             class="send-sms-btn"
             round
