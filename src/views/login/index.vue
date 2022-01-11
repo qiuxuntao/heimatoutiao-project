@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { login } from '@/api/user.js'
+import { login, sendSms } from '@/api/user.js'
 export default {
   name: 'LoginIndex',
   components: {},
@@ -127,7 +127,7 @@ export default {
     async onSendSms () {
       console.log('onSendSms')
       // 1. 校验手机号
-      console.log(this)
+      // console.log(this)
       try {
         await this.$refs.loginForm.validate('mobile')
       } catch (err) {
@@ -137,6 +137,19 @@ export default {
       // 2. 验证通过，显示倒计时
       this.isCountDownShow = true
       // 3. 请求发送验证码
+      try {
+        const res = await sendSms(this.user.mobile)
+        console.log('发送成功', res)
+        this.$toast('发送成功')
+        // 发送失败，关闭倒计时
+      } catch (err) {
+        if (err.response.status === 429) {
+          this.$toast('发送过于频繁,一分钟后重试')
+          console.log('发送过于频繁,一分钟后重试', err)
+        } else {
+          this.$toast('发送失败,请稍后重试')
+        }
+      }
     }
   }
 }
