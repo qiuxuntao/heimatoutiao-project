@@ -11,7 +11,6 @@ export const getItem = name => {
 }
 
 // 存储数据
-
 export const setItem = (name, value) => {
   // 将数组、对象类型的数据转换为JSON 格式字符串进行存储
   if (typeof value === 'object') {

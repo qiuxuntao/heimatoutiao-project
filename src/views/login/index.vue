@@ -1,7 +1,8 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nav-bar" title="登录" />
+    <van-nav-bar class="page-nav-bar" title="登录" left-text="返回" left-arrow @click-left="onClickLeft">
+      </van-nav-bar>
     <!-- /导航栏 -->
 
     <!-- 登录表单 -->
@@ -96,6 +97,9 @@ export default {
   created () {},
   mounted () {},
   methods: {
+    onClickLeft () {
+      this.$router.back()
+    },
     async onSubmit () {
       // 1.获取表单数据(登陆的手机号和验证码)
       const user = this.user
@@ -161,6 +165,7 @@ export default {
 
 <style scoped lang="less">
 .login-container {
+  background: url("~@/assets/海豚表演.png");
   .heimatoutiao {
     font-size: 37px;
   }
@@ -175,7 +180,7 @@ export default {
   .login-btn-wrap {
     padding: 53px 33px;
     .login-btn {
-      background-color: orangered;
+      background-color: #8fc9e3;
       border: none;
     }
   }
