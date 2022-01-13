@@ -49,11 +49,11 @@
     <!-- 宫格导航 -->
     <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
-        <i slot="icon" class="toutiao toutiao-shoucang"></i>
+        <i slot="icon" class="heimatoutiao heimatoutiao-shoucang"></i>
         <span slot="text" class="text">收藏</span>
       </van-grid-item>
       <van-grid-item class="grid-item">
-        <i slot="icon" class="toutiao toutiao-lishi"></i>
+        <i slot="icon" class="heimatoutiao heimatoutiao-lishi"></i>
         <span slot="text" class="text">历史</span>
       </van-grid-item>
     </van-grid>
@@ -198,13 +198,13 @@ export default {
   .grid-nav {
     .grid-item {
       height: 141px;
-      i.toutiao {
+      i.heimatoutiao {
         font-size: 45px;
       }
-      .toutiao-shoucang {
+      .heimatoutiao-shoucang {
         color: #eb5253;
       }
-      .toutiao-lishi {
+      .heimatoutiao-lishi {
         color: #ff9d1d;
       }
       span.text {

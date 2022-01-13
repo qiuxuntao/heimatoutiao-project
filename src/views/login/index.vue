@@ -121,6 +121,9 @@ export default {
         this.$store.commit('setUser', data.data)
         console.log('登陆成功', data)
         this.$toast.success('登陆成功')
+
+        // 登陆成功，返回原页面
+        this.$router.back()
       } catch (err) {
         // catch一定是失败的
         if (err.response.status === 400) {
