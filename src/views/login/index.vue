@@ -97,6 +97,7 @@ export default {
   created () {},
   mounted () {},
   methods: {
+    // 点击回退
     onClickLeft () {
       this.$router.back()
     },
