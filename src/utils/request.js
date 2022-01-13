@@ -18,6 +18,7 @@ request.interceptors.request.use(function (config) {
   if (user && user.token) {
     config.headers.Authorization = `Bearer ${user.token}`
   }
+  console.log('config信息', config)
   return config
 }, function (error) {
   // Do something with request error
