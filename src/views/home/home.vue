@@ -67,8 +67,28 @@ export default {
   }
 
   /deep/.channel-tabs {
+    .van-tabs__wrap{
+      height: 82px;
+    }
     .van-tab {
+      min-width: 200px;
+      min-height: 82px;
+      font-size: 30px;
+      color: #777777;
       border-right: 1px solid #edeff3;
+    }
+    .van-tab--active{
+      color: #7df9;
+    }
+    .van-tabs__line{
+      bottom: 8px;
+      background-color: #7df9;
+      width: 50px !important;
+      height: 6px;
+
+    }
+    .van-tabs__nav{
+      padding-bottom: 0;
     }
   }
 }
