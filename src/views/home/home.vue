@@ -15,7 +15,7 @@
     <!-- /导航栏 -->
 
     <!-- 标签栏 -->
-    <van-tabs v-model="active" animated swipeable>
+    <van-tabs class="channel-tabs" v-model="active" animated swipeable>
       <van-tab title="标签 1">内容 1</van-tab>
       <van-tab title="标签 2">内容 2</van-tab>
       <van-tab title="标签 3">内容 3</van-tab>
@@ -24,6 +24,9 @@
       <van-tab title="标签 6">内容 6</van-tab>
       <van-tab title="标签 7">内容 7</van-tab>
       <van-tab title="标签 8">内容 8</van-tab>
+      <div slot="nav-right" class="hbg-btn">
+        <i class="heimatoutiao heimatoutiao-gengduo"></i>
+      </div>
     </van-tabs>
     <!-- 标签栏 -->
   </div>
@@ -54,11 +57,18 @@ export default {
   .search-btn {
     width: 555px;
     height: 64px;
-    background-color: #73adf9;
+    background-color: #7df9;
     border: none;
     font-size: 28px;
+
     .van-icon {
       font-size: 32px;
+    }
+  }
+
+  /deep/.channel-tabs {
+    .van-tab {
+      border-right: 1px solid #edeff3;
     }
   }
 }
