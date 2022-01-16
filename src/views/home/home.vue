@@ -16,15 +16,14 @@
 
     <!-- 标签栏 -->
     <van-tabs class="channel-tabs" v-model="active" animated swipeable>
-      <van-tab title="标签 1">内容 1</van-tab>
-      <van-tab title="标签 2">内容 2</van-tab>
-      <van-tab title="标签 3">内容 3</van-tab>
-      <van-tab title="标签 4">内容 4</van-tab>
-      <van-tab title="标签 5">内容 5</van-tab>
-      <van-tab title="标签 6">内容 6</van-tab>
-      <van-tab title="标签 7">内容 7</van-tab>
-      <van-tab title="标签 8">内容 8</van-tab>
-      <div slot="nav-right" class="hbg-btn">
+      <van-tab
+        :title="channel.name"
+        v-for="channel in channels"
+        :key="channel.id"
+        >{{channel.name}}内容</van-tab
+      >
+
+      <div slot="nav-right" class="hamburger-btn">
         <i class="heimatoutiao heimatoutiao-gengduo"></i>
       </div>
     </van-tabs>
@@ -33,19 +32,36 @@
 </template>
 
 <script>
+import { getUserChannels } from '@/api/user.js'
+
 export default {
   name: 'HomeIndex',
   components: {},
   props: {},
   data () {
     // active是在下标的显示内容
-    return { active: 0 }
+    return {
+      active: 0,
+      channels: [] // 频道列表
+    }
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    this.loadChannels()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadChannels () {
+      try {
+        const { data } = await getUserChannels()
+        this.channels = data.data.channels
+        console.log('频道列表:', data)
+      } catch (err) {
+        this.$toast('获取频道失败')
+      }
+    }
+  }
 }
 </script>
 
@@ -67,7 +83,7 @@ export default {
   }
 
   /deep/.channel-tabs {
-    .van-tabs__wrap{
+    .van-tabs__wrap {
       height: 82px;
     }
     .van-tab {
@@ -77,18 +93,29 @@ export default {
       color: #777777;
       border-right: 1px solid #edeff3;
     }
-    .van-tab--active{
+    .van-tab--active {
       color: #7df9;
     }
-    .van-tabs__line{
+    .van-tabs__line {
       bottom: 8px;
       background-color: #7df9;
       width: 50px !important;
       height: 6px;
-
     }
-    .van-tabs__nav{
+    .van-tabs__nav {
       padding-bottom: 0;
+    }
+
+    .hamburger-btn {
+      position: fixed;
+      right: 0;
+      // display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 66px;
+      height: 82px;
+      background-color: #fff;
+      opacity: 0.902;
     }
   }
 }
