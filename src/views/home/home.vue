@@ -20,8 +20,9 @@
         :title="channel.name"
         v-for="channel in channels"
         :key="channel.id"
-        >{{channel.name}}内容</van-tab
       >
+        <ariclelist></ariclelist>
+      </van-tab>
 
       <div slot="nav-right" class="hamburger-btn">
         <i class="heimatoutiao heimatoutiao-gengduo"></i>
@@ -33,10 +34,11 @@
 
 <script>
 import { getUserChannels } from '@/api/user.js'
+import ariclelist from './components/article-list.vue'
 
 export default {
   name: 'HomeIndex',
-  components: {},
+  components: { ariclelist },
   props: {},
   data () {
     // active是在下标的显示内容
