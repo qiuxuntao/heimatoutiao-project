@@ -48,3 +48,7 @@ export const getUserChannels = () => {
     url: '/v1_0/user/channels'
   })
 }
+
+/**
+ * 获取用户自己的信息
+ */

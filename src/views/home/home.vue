@@ -21,7 +21,7 @@
         v-for="channel in channels"
         :key="channel.id"
       >
-        <ariclelist></ariclelist>
+        <ariclelist :channel=channel></ariclelist>
       </van-tab>
 
       <div slot="nav-right" class="hamburger-btn">
@@ -69,6 +69,7 @@ export default {
 
 <style scoped lang="less">
 .home-container {
+  padding-bottom: 100px;
   .van-nav-bar__title {
     max-width: unset;
   }
