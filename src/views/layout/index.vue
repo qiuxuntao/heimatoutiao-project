@@ -23,7 +23,7 @@
       </van-tabbar-item>
       <van-tabbar-item to="/video">
         <i slot="icon" class="heimatoutiao heimatoutiao-shipin"></i>
-        <span class="text">视频</span>
+        <span class="text">消息</span>
       </van-tabbar-item>
       <van-tabbar-item to="/my">
         <i slot="icon" class="heimatoutiao heimatoutiao-wode"></i>
