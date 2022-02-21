@@ -30,6 +30,11 @@ const routes = [
         component: () => import('@/views/video/video.vue')
       },
       {
+        path: '/issue',
+        name: 'issue',
+        component: () => import('@/views/issue/issue.vue')
+      },
+      {
         path: '/my',
         name: 'my',
         component: () => import('@/views/my/my.vue')

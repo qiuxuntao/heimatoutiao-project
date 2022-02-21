@@ -1,6 +1,6 @@
 <template>
   <div class="article-list">
-      <!--
+    <!--
         loading 控制上拉加载更多的 loading 状态
         finished 控制数据是否加载结束
         load 事件：当触发上拉加载更多的时候会触发调用 load 事件
@@ -8,6 +8,7 @@
         List 初始化后会触发一次 load 事件，用于加载第一屏的数据
         如果一次请求加载的数据条数较少，导致列表内容无法铺满当前屏幕，List 会继续触发 load 事件，直到内容铺满屏幕或数据全部加载完成
       -->
+    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-list
         v-model="loading"
         :finished="finished"
@@ -22,6 +23,7 @@
           :title="article.title"
         />
       </van-list>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -43,7 +45,8 @@ export default {
       loading: false, // 上拉加载更多的 loading 状态
       finished: false, // 是否加载结束
       error: false, // 是否加载失败
-      timestamp: null // 请求下一页数据的时间戳
+      timestamp: null, // 请求下一页数据的时间戳
+      isLoading: false// 控制下拉刷新的loading
     }
   },
   computed: {},
@@ -81,6 +84,10 @@ export default {
         this.loading = false // 关闭 loading 效果
         this.error = true // 开启错误提示
       }
+    },
+
+    onRefresh () {
+      console.log('刷新')
     }
   }
 }

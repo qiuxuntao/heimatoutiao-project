@@ -11,11 +11,15 @@
     <van-tabbar class="layout-tabbar" route>
       <van-tabbar-item to="/">
         <i slot="icon" class="heimatoutiao heimatoutiao-shouye"></i>
-        <span class="text">首页</span>
+        <span class="text">优原创</span>
       </van-tabbar-item>
       <van-tabbar-item to="/qa">
         <i slot="icon" class="heimatoutiao heimatoutiao-wenda"></i>
-        <span class="text">问答</span>
+        <span class="text">探索</span>
+      </van-tabbar-item>
+      <van-tabbar-item to="/issue">
+        <i slot="icon" class="heimatoutiao heimatoutiao-wode"></i>
+        <span class="text">发布</span>
       </van-tabbar-item>
       <van-tabbar-item to="/video">
         <i slot="icon" class="heimatoutiao heimatoutiao-shipin"></i>

@@ -50,7 +50,7 @@
     <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
         <i slot="icon" class="heimatoutiao heimatoutiao-shoucang"></i>
-        <span slot="text" class="text">收藏</span>
+        <span slot="text" class="text">关注</span>
       </van-grid-item>
       <van-grid-item class="grid-item">
         <i slot="icon" class="heimatoutiao heimatoutiao-lishi"></i>
