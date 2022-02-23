@@ -1,9 +1,9 @@
 <template>
   <div class="register-container">
     <van-nav-bar
-      title="注册"
+      title="登陆"
       left-text="返回"
-      right-text="登陆"
+      right-text="注册"
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
@@ -12,48 +12,37 @@
       <van-field
         v-model="username"
         name="用户名"
-        label="用户名"
+
         placeholder="用户名"
         :rules="[{ required: true, message: '请填写用户名' }]"
-      />
+      >
+       <i slot="left-icon" class="heimatoutiao heimatoutiao-yonghuming"></i>
+      </van-field>
+
       <van-field
         v-model="password"
         type="password"
         name="密码"
-        label="密码"
         placeholder="密码"
         :rules="[{ required: true, message: '请填写密码' }]"
-      />
+
+      >
+      <i slot="left-icon" class="heimatoutiao heimatoutiao-yanzhengma"></i>
+      </van-field>
 
       <van-field
-        v-model="password"
-        type="password"
-        name="确认密码"
-        label="确认密码"
-        placeholder="确认密码"
-        :rules="[{ required: true, message: '请填写密码' }]"
-      />
-
-      <van-field
-        v-model="password"
-        type="password"
+        v-model="username"
+        type="number"
         name="手机号"
-        label="手机号"
+
         placeholder="手机号"
         :rules="[{ required: true, message: '请输入手机号' }]"
-      />
-
-      <van-field
-        v-model="password"
-        type="password"
-        name="短信验证码"
-        label="短信验证码"
-        placeholder="短信验证码"
-        :rules="[{ required: true, message: '请填写手机验证码' }]"
-      />
+      >
+      <i slot="left-icon" class="heimatoutiao heimatoutiao-shouji"></i>
+      </van-field>
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit"
-          >提交</van-button
+          >登陆</van-button
         >
       </div>
     </van-form>
@@ -64,8 +53,8 @@
 export default {
   data () {
     return {
-      username: '',
-      password: ''
+      username: '11111111',
+      password: '11111111'
     }
   },
   methods: {
@@ -84,10 +73,20 @@ export default {
 </script>
 
 <style scoped>
+.heimatoutiao {
+    font-size: 37px;
+  }
+.van-nav-bar{
+  background-color:#8fc9e3 ;
+}
+.van-nav-bar__title {
+  color: #fff;
+}
 .van-button--info {
     color: #fff;
     background-color: #8fc9e3;
     border: 0.02667rem solid #8fc9e3;
     border-radius: inherit;
 }
+
 </style>

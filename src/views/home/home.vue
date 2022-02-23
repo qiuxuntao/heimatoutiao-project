@@ -25,7 +25,7 @@
       </van-tab>
 
       <div slot="nav-right" class="hamburger-btn">
-        <i class="heimatoutiao heimatoutiao-gengduo"></i>
+        <i class="heimatoutiao heimatoutiao-zhankai"></i>
       </div>
     </van-tabs>
     <!-- 标签栏 -->

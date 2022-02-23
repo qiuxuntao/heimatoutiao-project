@@ -1,8 +1,16 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nav-bar" title="登录" left-text="返回" left-arrow @click-left="onClickLeft" right-text="注册" @click-right="onClickRight">
-      </van-nav-bar>
+    <van-nav-bar
+      class="page-nav-bar"
+      title="注册"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+      right-text="登陆"
+      @click-right="onClickRight"
+    >
+    </van-nav-bar>
     <!-- /导航栏 -->
 
     <!-- 登录表单 -->
@@ -27,6 +35,19 @@
       >
         <i slot="left-icon" class="heimatoutiao heimatoutiao-shouji"></i>
       </van-field>
+
+      <!-- 密码 -->
+      <van-field
+        v-model="user.password"
+        type="number"
+        name="password"
+
+        placeholder="密码"
+        :rules="userFormRulers.password"
+      >
+       <i slot="left-icon" class="heimatoutiao heimatoutiao-yanzhengma"></i>
+      </van-field>
+
       <!-- 验证码 -->
       <van-field
         v-model="user.code"
@@ -41,7 +62,12 @@
         <!-- 发送短信验证码按钮 -->
         <template #button>
           <!-- time倒计时时间 -->
-          <van-count-down v-if="isCountDownShow" :time="1000 *60 " format="ss s后获取"  @finish="isCountDownShow=false"/>
+          <van-count-down
+            v-if="isCountDownShow"
+            :time="1000 * 60"
+            format="ss s后获取"
+            @finish="isCountDownShow = false"
+          />
           <van-button
             v-else
             class="send-sms-btn"
@@ -76,7 +102,8 @@ export default {
     return {
       user: {
         mobile: '13911111111', // 手机号
-        code: '246810' // 验证码
+        code: '246810', // 验证码
+        password: '123456'
       },
       // 配置ruler手机号 手机验证码验证规则
       userFormRulers: {
@@ -84,12 +111,16 @@ export default {
           { required: true, message: '手机号不能为空' },
           { pattern: /^1[3|5|7|8]\d{9}$/, message: '手机号格式错误' }
         ],
+        password: [
+          { required: true, message: '密码不能为空' },
+          { pattern: /^[0-9]{6,18}$/, message: '密码格式错误' }
+        ],
         code: [
           { required: true, message: '验证码不能为空' },
           { pattern: /^\d{6}$/, message: '验证码格式错误' }
         ]
       },
-      isCountDownShow: false// 是否显示倒计时
+      isCountDownShow: false // 是否显示倒计时
     }
   },
   computed: {},
@@ -102,7 +133,9 @@ export default {
       this.$router.back()
     },
 
-    onClickRight () { this.$router.push('/register') },
+    onClickRight () {
+      this.$router.push('/register')
+    },
     async onSubmit () {
       // 1.获取表单数据(登陆的手机号和验证码)
       const user = this.user
@@ -125,7 +158,7 @@ export default {
         this.$toast.success('登陆成功')
 
         // 登陆成功，返回原页面
-        this.$router.back()
+        this.$router.push('/my')
       } catch (err) {
         // catch一定是失败的
         if (err.response.status === 400) {

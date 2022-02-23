@@ -1,7 +1,7 @@
 @font-face {
   font-family: "heimatoutiao";
   /* Project id 3128170 */
-  src: url('//at.alicdn.com/t/font_3128170_1i3j0y2bn0r.woff2?t=1641779628110') format('woff2'), url('//at.alicdn.com/t/font_3128170_1i3j0y2bn0r.woff?t=1641779628110') format('woff'), url('//at.alicdn.com/t/font_3128170_1i3j0y2bn0r.ttf?t=1641779628110') format('truetype');
+  src: url('//at.alicdn.com/t/font_3128170_55e55brlld5.woff2?t=1645622760490') format('woff2'), url('//at.alicdn.com/t/font_3128170_55e55brlld5.woff?t=1645622760490') format('woff'), url('//at.alicdn.com/t/font_3128170_55e55brlld5.ttf?t=1645622760490') format('truetype');
 }
 .heimatoutiao {
   font-family: "heimatoutiao" !important;
@@ -9,6 +9,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.heimatoutiao-lishi1:before {
+  content: "\e606";
+}
+.heimatoutiao-gouwuche:before {
+  content: "\e694";
+}
+.heimatoutiao-zhankai:before {
+  content: "\e621";
+}
+.heimatoutiao-yonghuming:before {
+  content: "\e607";
 }
 .heimatoutiao-gengduo:before {
   content: "\e609";
