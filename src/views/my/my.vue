@@ -19,7 +19,7 @@
       <div class="data-stats">
         <div class="data-item">
           <span class="count">{{ userInfo.art_count }}</span>
-          <span class="text">头条</span>
+          <span class="text">商品</span>
         </div>
         <div class="data-item">
           <span class="count">{{ userInfo.follow_count }}</span>
@@ -31,7 +31,7 @@
         </div>
         <div class="data-item">
           <span class="count">{{ userInfo.like_count }}</span>
-          <span class="text">获赞</span>
+          <span class="text">点赞</span>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
       </van-grid-item>
       <van-grid-item class="grid-item">
         <i slot="icon" class="heimatoutiao heimatoutiao-lishi"></i>
-        <span slot="text" class="text">历史</span>
+        <span slot="text" class="text">浏览</span>
       </van-grid-item>
     </van-grid>
     <!-- /宫格导航 -->

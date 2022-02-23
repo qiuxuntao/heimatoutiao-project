@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nav-bar" title="登录" left-text="返回" left-arrow @click-left="onClickLeft">
+    <van-nav-bar class="page-nav-bar" title="登录" left-text="返回" left-arrow @click-left="onClickLeft" right-text="注册" @click-right="onClickRight">
       </van-nav-bar>
     <!-- /导航栏 -->
 
@@ -101,6 +101,8 @@ export default {
     onClickLeft () {
       this.$router.back()
     },
+
+    onClickRight () { this.$router.push('/register') },
     async onSubmit () {
       // 1.获取表单数据(登陆的手机号和验证码)
       const user = this.user
