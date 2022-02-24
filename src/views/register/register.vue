@@ -16,7 +16,7 @@
         placeholder="用户名"
         :rules="[{ required: true, message: '请填写用户名' }]"
       >
-       <i slot="left-icon" class="heimatoutiao heimatoutiao-yonghuming"></i>
+       <i slot="left-icon" class="heimatoutiao heimatoutiao-yonghu"></i>
       </van-field>
 
       <van-field

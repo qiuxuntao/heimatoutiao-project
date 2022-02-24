@@ -45,7 +45,7 @@
         placeholder="密码"
         :rules="userFormRulers.password"
       >
-       <i slot="left-icon" class="heimatoutiao heimatoutiao-yanzhengma"></i>
+       <i slot="left-icon" class="heimatoutiao heimatoutiao-mima"></i>
       </van-field>
 
       <!-- 验证码 -->
