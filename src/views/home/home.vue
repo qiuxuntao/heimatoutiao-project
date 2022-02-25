@@ -68,7 +68,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+
 .home-container {
+.search-btn[data-v-39f87be5] {
+  width: 450px;
+}
   padding-bottom: 100px;
   .van-nav-bar__title {
     max-width: unset;
@@ -76,7 +80,7 @@ export default {
   .search-btn {
     width: 555px;
     height: 64px;
-    background-color: #7df9;
+  background: linear-gradient(to right, pink, gold);
     border: none;
     font-size: 28px;
 

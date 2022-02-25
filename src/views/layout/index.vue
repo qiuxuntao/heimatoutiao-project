@@ -15,11 +15,11 @@
       </van-tabbar-item>
       <van-tabbar-item to="/qa">
         <i slot="icon" class="heimatoutiao heimatoutiao-wenda"></i>
-        <span class="text">探索</span>
+        <span class="text">商品</span>
       </van-tabbar-item>
       <van-tabbar-item to="/issue">
         <i slot="icon" class="heimatoutiao heimatoutiao-wode"></i>
-        <span class="text">发布</span>
+        <span class="text">购物车</span>
       </van-tabbar-item>
       <van-tabbar-item to="/video">
         <i slot="icon" class="heimatoutiao heimatoutiao-shipin"></i>
