@@ -1,28 +1,27 @@
 <template>
-<div>
+  <div>
     <div>
-<van-nav-bar
-  title="收货地址"
-  left-text="返回"
-  right-text="新增地址"
-  left-arrow
-  @click-left="onClickLeft"
-  @click-right="onClickRight"
-/>
-</div>
+      <van-nav-bar
+        title="收货地址"
+        left-text="返回"
+        right-text="新增地址"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+      />
+    </div>
     <div>
       <van-address-list
-  v-model="chosenAddressId"
-  :list="list"
-  :disabled-list="disabledList"
-  disabled-text="以下地址超出配送范围"
-  default-tag-text="默认"
-  @add="onAdd"
-  @edit="onEdit"
-/>
-</div>
-</div>
-
+        v-model="chosenAddressId"
+        :list="list"
+        :disabled-list="disabledList"
+        disabled-text="以下地址超出配送范围"
+        default-tag-text="默认"
+        @add="onAdd"
+        @edit="onEdit"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -68,20 +67,20 @@ export default {
       this.$router.back()
     },
     onClickRight () {
-      Toast('按钮')
+      this.$router.push('/adm')
     }
   }
 }
 </script>
 
 <style>
-.van-address-list__bottom{
-    bottom:90px
+.van-address-list__bottom {
+  bottom: 90px;
 }
 .van-button--danger {
-    color: #fff;
-   background: linear-gradient(to right, pink, #93d5f4);
-    border: 0.02667rem solid pink;
+  color: #fff;
+  background: linear-gradient(to right, pink, #93d5f4);
+  border: 0.02667rem solid pink;
 }
 /* .van-nav-bar__text{
     color: #93d5f4;
@@ -89,10 +88,10 @@ export default {
 .van-nav-bar .van-icon {
     color: #93d5f4;
 } */
-.van-nav-bar__title{
-    color: #fff;
+.van-nav-bar__title {
+  color: #fff;
 }
-.van-nav-bar{
-    background-color: #93d5f4;
+.van-nav-bar {
+  background-color: #93d5f4;
 }
 </style>

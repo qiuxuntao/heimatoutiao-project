@@ -1,7 +1,7 @@
 @font-face {
   font-family: "heimatoutiao";
   /* Project id 3128170 */
-  src: url('//at.alicdn.com/t/font_3128170_weujdkk4t1o.woff2?t=1645661490099') format('woff2'), url('//at.alicdn.com/t/font_3128170_weujdkk4t1o.woff?t=1645661490099') format('woff'), url('//at.alicdn.com/t/font_3128170_weujdkk4t1o.ttf?t=1645661490099') format('truetype');
+  src: url('//at.alicdn.com/t/font_3128170_sbycggql7ye.woff2?t=1645773126080') format('woff2'), url('//at.alicdn.com/t/font_3128170_sbycggql7ye.woff?t=1645773126080') format('woff'), url('//at.alicdn.com/t/font_3128170_sbycggql7ye.ttf?t=1645773126080') format('truetype');
 }
 .heimatoutiao {
   font-family: "heimatoutiao" !important;
@@ -9,6 +9,21 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.heimatoutiao-gouwuche01:before {
+  content: "\e61e";
+}
+.heimatoutiao-shipin1:before {
+  content: "\e649";
+}
+.heimatoutiao-shangpin:before {
+  content: "\e61f";
+}
+.heimatoutiao-zhuye:before {
+  content: "\e608";
+}
+.heimatoutiao-fabu:before {
+  content: "\e65d";
 }
 .heimatoutiao-mima:before {
   content: "\e620";

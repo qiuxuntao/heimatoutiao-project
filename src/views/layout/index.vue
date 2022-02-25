@@ -10,20 +10,20 @@
      -->
     <van-tabbar class="layout-tabbar" route>
       <van-tabbar-item to="/">
-        <i slot="icon" class="heimatoutiao heimatoutiao-shouye"></i>
+        <i slot="icon" class="heimatoutiao heimatoutiao-zhuye"></i>
         <span class="text">优原创</span>
       </van-tabbar-item>
       <van-tabbar-item to="/qa">
-        <i slot="icon" class="heimatoutiao heimatoutiao-wenda"></i>
+        <i slot="icon" class="heimatoutiao heimatoutiao-shangpin"></i>
         <span class="text">商品</span>
       </van-tabbar-item>
       <van-tabbar-item to="/issue">
-        <i slot="icon" class="heimatoutiao heimatoutiao-wode"></i>
+        <i slot="icon" class="heimatoutiao heimatoutiao-gouwuche01"></i>
         <span class="text">购物车</span>
       </van-tabbar-item>
       <van-tabbar-item to="/video">
-        <i slot="icon" class="heimatoutiao heimatoutiao-shipin"></i>
-        <span class="text">消息</span>
+        <i slot="icon" class="heimatoutiao heimatoutiao-shipin1"></i>
+        <span class="text">视频</span>
       </van-tabbar-item>
       <van-tabbar-item to="/my">
         <i slot="icon" class="heimatoutiao heimatoutiao-wode"></i>
@@ -40,8 +40,7 @@ export default {
   components: {},
   props: {},
   data () {
-    return {
-    }
+    return {}
   },
   computed: {},
   watch: {},
@@ -52,6 +51,18 @@ export default {
 </script>
 
 <style scoped lang="less">
+.van-tabbar-item {
+  background: linear-gradient(to right, pink, #93d5f4);
+  // border: 0.02667rem solid gold;
+}
+.van-tabbar-item--active {
+  background: linear-gradient(to right, #5fcd72, #61d3df);
+
+  // border: 0.02667rem solid gold;
+}
+.heimatoutiao {
+  font-size: 40px;
+}
 .layout-container {
   .layout-tabbar {
     i.toutiao {

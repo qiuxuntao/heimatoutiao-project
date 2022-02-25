@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container" style="background-color:red">
+  <div class="login-container">
     <!-- 导航栏 -->
     <van-nav-bar
       class="page-nav-bar"
