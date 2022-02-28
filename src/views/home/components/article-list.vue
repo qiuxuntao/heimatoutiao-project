@@ -17,11 +17,17 @@
         error-text="请求失败，点击重新加载"
         @load="onLoad"
       >
-        <van-cell
+        <AricleItem
+          v-for="(article, index) in list"
+          :key="index"
+          :article="article"
+        >
+        </AricleItem>
+        <!-- <van-cell
           v-for="(article, index) in list"
           :key="index"
           :title="article.title"
-        />
+        /> -->
       </van-list>
     </van-pull-refresh>
   </div>
@@ -29,10 +35,11 @@
 
 <script>
 import { getArticles } from '@/api/article'
+import AricleItem from '@/views/home/components/article-item/index.vue'
 import { Toast } from 'vant'
 export default {
   name: 'ArticleList',
-  components: {},
+  components: { AricleItem },
   props: {
     channel: {
       type: Object,
@@ -46,8 +53,7 @@ export default {
       finished: false, // 是否加载结束
       error: false, // 是否加载失败
       timestamp: null, // 请求下一页数据的时间戳
-
-      isreFreshLoading: false // 控制下拉刷新的状态a u
+      isreFreshLoading: false // 控制下拉刷新的状态
     }
   },
   computed: {},
@@ -117,4 +123,9 @@ export default {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.article-list {
+  height: 79vh;
+  overflow-y: auto;
+}
+</style>

@@ -25,7 +25,7 @@
       </van-tab>
 
       <div slot="nav-right" class="hamburger-btn">
-        <i class="heimatoutiao heimatoutiao-zhankai"></i>
+        <i class="heimatoutiao heimatoutiao-fenlei-tubiao"></i>
       </div>
     </van-tabs>
     <!-- 标签栏 -->
@@ -70,6 +70,14 @@ export default {
 <style scoped lang="less">
 
 .home-container {
+  padding-top: 186px;
+  .heimatoutiao-fenlei-tubiao{
+    position: fixed;
+    right: 0px;
+    top: 122px;
+    font-size: 34px;
+  }
+
 .search-btn[data-v-39f87be5] {
   width: 450px;
 }

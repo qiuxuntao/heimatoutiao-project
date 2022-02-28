@@ -1,7 +1,7 @@
 @font-face {
   font-family: "heimatoutiao";
   /* Project id 3128170 */
-  src: url('//at.alicdn.com/t/font_3128170_sbycggql7ye.woff2?t=1645773126080') format('woff2'), url('//at.alicdn.com/t/font_3128170_sbycggql7ye.woff?t=1645773126080') format('woff'), url('//at.alicdn.com/t/font_3128170_sbycggql7ye.ttf?t=1645773126080') format('truetype');
+  src: url('//at.alicdn.com/t/font_3128170_atgo36558nt.woff2?t=1646033815109') format('woff2'), url('//at.alicdn.com/t/font_3128170_atgo36558nt.woff?t=1646033815109') format('woff'), url('//at.alicdn.com/t/font_3128170_atgo36558nt.ttf?t=1646033815109') format('truetype');
 }
 .heimatoutiao {
   font-family: "heimatoutiao" !important;
@@ -9,6 +9,9 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.heimatoutiao-fenlei-tubiao:before {
+  content: "\e601";
 }
 .heimatoutiao-gouwuche01:before {
   content: "\e61e";
