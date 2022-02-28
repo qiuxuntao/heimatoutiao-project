@@ -21,30 +21,52 @@
         v-for="channel in channels"
         :key="channel.id"
       >
-        <ariclelist :channel=channel></ariclelist>
+        <ariclelist :channel="channel"></ariclelist>
       </van-tab>
 
-      <div slot="nav-right" class="hamburger-btn">
+      <div
+        slot="nav-right"
+        class="hamburger-btn"
+        @click="isChannelEditShow = true"
+      >
         <i class="heimatoutiao heimatoutiao-fenlei-tubiao"></i>
       </div>
     </van-tabs>
     <!-- 标签栏 -->
+    <!-- 频道弹出层 -->
+    <!-- 频道编辑 -->
+    <van-popup
+      class="edit-channel-popup"
+      v-model="isChannelEditShow"
+      position="bottom"
+      close-icon-position="top-left"
+      :style="{ height: '100%' }"
+      closeable
+      >
+      <ChannelEdit></ChannelEdit>
+      </van-popup
+    >
+    <!-- /频道编辑 -->
+
+    <!-- 频道弹出层 -->
   </div>
 </template>
 
 <script>
 import { getUserChannels } from '@/api/user.js'
 import ariclelist from './components/article-list.vue'
+import ChannelEdit from '@/views/home/components/channel-edit.vue'
 
 export default {
   name: 'HomeIndex',
-  components: { ariclelist },
+  components: { ariclelist, ChannelEdit },
   props: {},
   data () {
     // active是在下标的显示内容
     return {
       active: 0,
-      channels: [] // 频道列表
+      channels: [], // 频道列表
+      isChannelEditShow: false // 频道弹出层显示
     }
   },
   computed: {},
@@ -68,19 +90,18 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 .home-container {
   padding-top: 186px;
-  .heimatoutiao-fenlei-tubiao{
+  .heimatoutiao-fenlei-tubiao {
     position: fixed;
     right: 0px;
     top: 122px;
     font-size: 34px;
   }
 
-.search-btn[data-v-39f87be5] {
-  width: 450px;
-}
+  .search-btn[data-v-39f87be5] {
+    width: 450px;
+  }
   padding-bottom: 100px;
   .van-nav-bar__title {
     max-width: unset;
@@ -88,7 +109,7 @@ export default {
   .search-btn {
     width: 555px;
     height: 64px;
-  background: linear-gradient(to right, pink, gold);
+    background: linear-gradient(to right, pink, gold);
     border: none;
     font-size: 28px;
 
@@ -104,7 +125,7 @@ export default {
       top: 92px;
       left: 0;
       right: 0;
-      z-index:1;
+      z-index: 1;
       border: solid 0.5px #7df9;
     }
     .van-tab {
@@ -140,4 +161,5 @@ export default {
     }
   }
 }
+
 </style>
