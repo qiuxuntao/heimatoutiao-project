@@ -20,9 +20,9 @@ const routes = [
         component: () => import('@/views/home/home.vue')
       },
       {
-        path: '/qa',
-        name: 'qa',
-        component: () => import('@/views/qa/qa.vue')
+        path: '/shops',
+        name: 'shops',
+        component: () => import('@/views/shops/shops.vue')
       },
       {
         path: '/video',
@@ -30,9 +30,9 @@ const routes = [
         component: () => import('@/views/video/video.vue')
       },
       {
-        path: '/issue',
-        name: 'issue',
-        component: () => import('@/views/issue/issue.vue')
+        path: '/shopcat',
+        name: 'shopcat',
+        component: () => import('@/views/shopcat/shopcat.vue')
       },
       {
         path: '/my',
@@ -53,6 +53,11 @@ const routes = [
         path: '/adm',
         name: 'adm',
         component: () => import('@/views/address/adm.vue')
+      },
+      {
+        path: '/shopcard',
+        name: 'shopcard',
+        component: () => import('@/views/shopcard/shopcard.vue')
       }
 
     ]

@@ -13,11 +13,11 @@
         <i slot="icon" class="heimatoutiao heimatoutiao-zhuye"></i>
         <span class="text">优原创</span>
       </van-tabbar-item>
-      <van-tabbar-item to="/qa">
+      <van-tabbar-item to="/shops">
         <i slot="icon" class="heimatoutiao heimatoutiao-shangpin"></i>
         <span class="text">商品</span>
       </van-tabbar-item>
-      <van-tabbar-item to="/issue">
+      <van-tabbar-item to="/shopcat">
         <i slot="icon" class="heimatoutiao heimatoutiao-gouwuche01"></i>
         <span class="text">购物车</span>
       </van-tabbar-item>
