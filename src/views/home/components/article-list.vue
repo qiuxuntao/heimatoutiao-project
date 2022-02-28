@@ -8,7 +8,7 @@
         List 初始化后会触发一次 load 事件，用于加载第一屏的数据
         如果一次请求加载的数据条数较少，导致列表内容无法铺满当前屏幕，List 会继续触发 load 事件，直到内容铺满屏幕或数据全部加载完成
       -->
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+    <van-pull-refresh v-model="isreFreshLoading" @refresh="onRefresh">
       <van-list
         v-model="loading"
         :finished="finished"
@@ -29,7 +29,7 @@
 
 <script>
 import { getArticles } from '@/api/article'
-
+import { Toast } from 'vant'
 export default {
   name: 'ArticleList',
   components: {},
@@ -46,7 +46,8 @@ export default {
       finished: false, // 是否加载结束
       error: false, // 是否加载失败
       timestamp: null, // 请求下一页数据的时间戳
-      isLoading: false// 控制下拉刷新的loading
+
+      isreFreshLoading: false // 控制下拉刷新的状态a u
     }
   },
   computed: {},
@@ -86,8 +87,27 @@ export default {
       }
     },
 
-    onRefresh () {
-      console.log('刷新')
+    // 下拉刷新会调用这个函数
+
+    async onRefresh () {
+      // 请求获取数据
+      // 将数据追加到列表的顶部
+      // 关闭下拉刷新的状态
+      try {
+        const { data } = await getArticles({
+          channel_id: this.channel.id, // 频道 id
+          timestamp: Date.now(), // 最新数据的时间
+          with_top: 1 // 是否包含置顶，进入页面第一次请求时要包含置顶文章，1-包含置顶，0-不包含
+        })
+        console.log(data)
+        // 将数据追加到顶部
+        this.list.unshift(...data.data.results)
+        Toast('刷新成功，更新了10条数据')
+
+        this.isreFreshLoading = false
+      } catch (err) {
+        console.log('请求失败', err)
+      }
     }
   }
 }

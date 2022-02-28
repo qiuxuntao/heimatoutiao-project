@@ -12,7 +12,6 @@
         <van-goods-action-button
           type="danger"
           text="立即购买"
-          @click="onClickButtonBuy"
         />
       </van-goods-action>
     </div>
@@ -32,6 +31,9 @@ export default {
     },
     shopCard () {
       this.$router.push('/login')
+    },
+    onClickIcon () {
+      console.log('滚')
     }
   }
 
