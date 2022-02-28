@@ -12,8 +12,7 @@
       <van-card
         v-for="shop_info in shop_list"
         :key="shop_info.id"
-        :num="shop_info.goods_count"
-        :price="shop_info.goods_price*shop_info.goods_count"
+        :price="shop_info.goods_price"
         :desc="shop_info.goods_name"
         :title="shop_info.goods_name"
         :thumb="shop_info.goods_img"
@@ -23,17 +22,33 @@
           <van-tag plain type="danger">{{ shop_info.id }}</van-tag>
         </template>
         <template #footer>
-          <van-button @click="shop_info.goods_count+=1"  size="mini">+</van-button>
-          <van-button  @click="shop_info.goods_count-=1" size="mini">-</van-button>
+          <!-- <van-button @click="shop_info.goods_count+=1"  size="mini">+</van-button>
+          <van-button  @click="shop_info.goods_count-=1" size="mini">-</van-button> -->
         </template>
       </van-card>
     </div>
 
+    <div>
+      <van-goods-action>
+        <van-goods-action-icon icon="chat-o" text="客服" @click="onClickIcon" />
+        <van-goods-action-icon
+          icon="cart-o"
+          text="购物车"
+          @click="onClickIcon"
+        />
+        <van-goods-action-icon icon="shop-o" text="店铺" @click="onClickIcon" />
+        <van-goods-action-button
+          type="danger"
+          text="立即购买"
+          @click="onClickButton"
+        />
+      </van-goods-action>
+    </div>
   </div>
 </template>
 
 <script>
-import { Card, Lazyload } from 'vant'
+import { Card, Lazyload, Toast } from 'vant'
 import Vue from 'vue'
 import axios from 'axios'
 
@@ -66,8 +81,15 @@ export default {
       if (res.status === 200) {
         this.shop_list = res.list
       }
-    }
+    },
 
+    onClickIcon () {
+      Toast('点击图标')
+      this.$router.push('/issue')
+    },
+    onClickButton () {
+      Toast('点击按钮')
+    }
   },
   computed: {},
   watch: {},
@@ -89,5 +111,29 @@ export default {
   display: inline-block;
   width: 100%;
   height: 380px;
+}
+.van-goods-action {
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    box-sizing: content-box;
+    height: 1.33333rem;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    background-color: #fff;
+}
+.van-button{
+   background: linear-gradient(to right, pink, #93d5f4);
+}
+.van-goods-action-icon{
+    background: linear-gradient(to right, pink, #93d5f4);
+    border: 0.02667rem solid pink;
 }
 </style>

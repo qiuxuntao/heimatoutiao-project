@@ -30,6 +30,7 @@ export default {
             type: 'video/mp4', // 类型
             // src: '/src/views/video/1645776705409665.mp4'
             src: 'https://s19.aconvert.com/convert/p3r68-cdx67/pa6do-xbufk.webm' // url地址
+            // src: 'https://s19.aconvert.com/convert/p3r68-cdx67/pa6do-xbufk.webm'
           }
         ],
         poster: 'https://img-blog.csdnimg.cn/2b70ba1d6acb496980b3b7e2158ab49a.png', // 封面地址
@@ -41,6 +42,7 @@ export default {
           fullscreenToggle: true // 是否显示全屏按钮
         }
       }
+
     }
   },
   components: {

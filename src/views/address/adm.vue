@@ -33,7 +33,8 @@ import { Toast } from 'vant'
 export default {
   data () {
     return {
-      areaList: {},
+      areaList: [
+      ],
       searchResult: []
     }
   },
@@ -61,16 +62,22 @@ export default {
     },
     onClickRight () {
       Toast('按钮')
+      console.log(this.$store.state.areaData)
+    }
+  },
+  created: {
+    areaData () {
+      const daL = this.$store.state.areaData
+      console.log(daL)
     }
   }
 }
 </script>
 
 <style>
-.van-button--default{
-     background: linear-gradient(to right, pink, #93d5f4);
-      border: 0.02667rem solid pink;
-      color: #fff;
-
+.van-button--default {
+  background: linear-gradient(to right, pink, #93d5f4);
+  border: 0.02667rem solid pink;
+  color: #fff;
 }
 </style>

@@ -59,9 +59,11 @@ export default {
   methods: {
     onAdd () {
       Toast('新增地址')
+      console.log('111111')
     },
     onEdit (item, index) {
       Toast('编辑地址:' + index)
+      console.log('22222')
     },
     onClickLeft () {
       this.$router.back()
