@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nav-bar">
+    <van-nav-bar class="page-nav-bar" fixed>
       <van-button
         class="search-btn"
         slot="title"
@@ -91,7 +91,13 @@ export default {
 
   /deep/.channel-tabs {
     .van-tabs__wrap {
-      height: 82px;
+      height: 90px;
+      position: fixed;
+      top: 92px;
+      left: 0;
+      right: 0;
+      z-index:1;
+      border: solid 0.5px #7df9;
     }
     .van-tab {
       min-width: 200px;

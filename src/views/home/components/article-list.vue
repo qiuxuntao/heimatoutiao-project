@@ -101,12 +101,16 @@ export default {
         })
         console.log(data)
         // 将数据追加到顶部
+        // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
         this.list.unshift(...data.data.results)
+        // 下拉刷新成功文本
         Toast('刷新成功，更新了10条数据')
 
         this.isreFreshLoading = false
       } catch (err) {
+        this.isreFreshLoading = false
         console.log('请求失败', err)
+        Toast('刷新失败')
       }
     }
   }
