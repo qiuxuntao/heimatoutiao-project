@@ -1,14 +1,16 @@
 <template>
   <div class="channel-edit">
     <van-cell title="我的频道" :border="false">
-      <van-button size="mini" plain @click="isEdit=!isEdit">编辑</van-button>
+      <van-button size="mini" plain @click="isEdit = !isEdit">{{
+        isEdit ? "完成" : "编辑"
+      }}</van-button>
     </van-cell>
     <van-grid :gutter="10" class="mygrid">
       <van-grid-item
         class="channel-item"
         v-for="(channel, index) in mychannels"
         :key="index"
-        @click="onMyChannelsClick(channel,index)"
+        @click="onMyChannelsClick(channel, index)"
       >
         <van-icon slot="icon" name="clear" v-show="isEdit"></van-icon>
         <span class="text" slot="text" :class="{ active: index === active }">{{
@@ -31,7 +33,10 @@
 </template>
 
 <script>
-import { getAllChannels } from '@/api/channels.js'
+import { getAllChannels, addUserChannel } from '@/api/channels.js'
+import { mapState } from 'vuex'
+import { setItem } from '@/utils/storage.js'
+import { Toast } from 'vant'
 export default {
   name: 'ChannelEdit',
   components: {},
@@ -48,7 +53,7 @@ export default {
   data () {
     return {
       allChannels: [], // 所有频道
-      isEdit: false// 控制xx图标显示
+      isEdit: false // 控制xx图标显示
     }
   },
   computed: {
@@ -67,7 +72,8 @@ export default {
         }
       })
       return channels
-    }
+    },
+    ...mapState(['user'])
   },
   watch: {},
   created () {
@@ -87,16 +93,39 @@ export default {
     },
 
     // 把下面的频道推荐加入到我的频道
-    onAddChannels (channel) {
+    async onAddChannels (channel) {
       this.mychannels.push(channel)
+      // 数据持久化处理
+      if (this.user) {
+        try {
+          await addUserChannel({
+            id: channel.id, // 频道id
+            seq: this.mychannels.length // 序号
+          })
+        } catch (err) {
+          console.log('保存失败，请重试')
+          Toast('添加频道失败')
+        }
+        // 已登陆,把数据请求接口放到线上
+      } else {
+        // 未登陆
+        setItem('TOUTIAO_CHANNELS', this.mychannels)
+      }
     },
     onMyChannelsClick (channel, index) {
       // 如果是编辑状态，执行删除频道
       if (this.isEdit) {
-
+        // 编辑状态，执行删除频道
+        // 参数1:要删除的元素索引（包括自己）
+        // 参数2:删除的个数，如果不指定，则从参数1开始删除到最后
+        if (index <= this.active) {
+          // 让激活频道索引减去一
+          this.$emit('update-active', this.active - 1, true)
+        }
+        this.mychannels.splice(index, 1)
       } else {
         // 如果是非编辑状态，执行切换频道
-        this.$emit('update-active', index)
+        this.$emit('update-active', index, false)
       }
     }
   }

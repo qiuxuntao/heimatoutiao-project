@@ -84,9 +84,11 @@ export default {
         this.$toast('获取频道失败')
       }
     },
-    onUpadateAcive (index) {
-      this.active=index
-      this.isChannelEditShow=false
+    onUpadateAcive (index, isChannelEditShow = true) {
+      // 点击的列表频道下标赋值给=active(展示的列表频道)
+      this.active = index
+      // 切换后关闭编辑频道
+      this.isChannelEditShow = isChannelEditShow
     }
   }
 }
@@ -125,7 +127,7 @@ export default {
     .van-tabs__wrap {
       height: 90px;
       position: fixed;
-      top: 92px;
+      top: 91px;
       left: 0;
       right: 0;
       z-index: 1;

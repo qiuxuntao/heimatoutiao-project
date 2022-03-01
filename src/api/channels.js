@@ -9,3 +9,16 @@ export const getAllChannels = () => {
     url: '/v1_0/channels'
   })
 }
+
+/**
+ * 添加用户频道
+ */
+export const addUserChannel = channels => {
+  return request({
+    method: 'PATCH',
+    url: '/v1_0/user/channels',
+    data: {
+      channels
+    }
+  })
+}
