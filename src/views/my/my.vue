@@ -224,4 +224,18 @@ export default {
     margin-bottom: 9px;
   }
 }
+.van-button{
+  background: linear-gradient(to right, pink, #93d5f4);
+  border-radius: 5%;
+  color: #ffff;
+  border: solid 1px pink;
+
+}
+
+.logout-cell{
+    background: linear-gradient(to right, pink, #93d5f4);
+  border-radius: 5%;
+  color: #ffff;
+  border: solid 1px pink;
+}
 </style>

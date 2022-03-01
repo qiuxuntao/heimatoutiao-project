@@ -42,10 +42,9 @@
       close-icon-position="top-left"
       :style="{ height: '100%' }"
       closeable
-      >
-      <ChannelEdit></ChannelEdit>
-      </van-popup
     >
+      <ChannelEdit :mychannels="channels" :active="active"></ChannelEdit>
+    </van-popup>
     <!-- /频道编辑 -->
 
     <!-- 频道弹出层 -->
@@ -161,5 +160,4 @@ export default {
     }
   }
 }
-
 </style>
