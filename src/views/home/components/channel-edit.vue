@@ -8,6 +8,7 @@
         class="channel-item"
         v-for="(channel, index) in mychannels"
         :key="index"
+        @click="onMyChannelsClick(channel,index)"
       >
         <van-icon slot="icon" name="clear" v-show="isEdit"></van-icon>
         <span class="text" slot="text" :class="{ active: index === active }">{{
@@ -88,6 +89,15 @@ export default {
     // 把下面的频道推荐加入到我的频道
     onAddChannels (channel) {
       this.mychannels.push(channel)
+    },
+    onMyChannelsClick (channel, index) {
+      // 如果是编辑状态，执行删除频道
+      if (this.isEdit) {
+
+      } else {
+        // 如果是非编辑状态，执行切换频道
+        this.$emit('update-active', index)
+      }
     }
   }
 }

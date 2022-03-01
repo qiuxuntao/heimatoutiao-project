@@ -43,7 +43,7 @@
       :style="{ height: '100%' }"
       closeable
     >
-      <ChannelEdit :mychannels="channels" :active="active"></ChannelEdit>
+      <ChannelEdit :mychannels="channels" :active="active" @update-active="onUpadateAcive"></ChannelEdit>
     </van-popup>
     <!-- /频道编辑 -->
 
@@ -83,6 +83,10 @@ export default {
       } catch (err) {
         this.$toast('获取频道失败')
       }
+    },
+    onUpadateAcive (index) {
+      this.active=index
+      this.isChannelEditShow=false
     }
   }
 }
