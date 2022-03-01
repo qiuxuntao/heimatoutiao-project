@@ -1,23 +1,25 @@
 <template>
   <div class="channel-edit">
     <van-cell title="我的频道" :border="false">
-      <van-button size="mini" plain>编辑</van-button>
+      <van-button size="mini" plain @click="isEdit=!isEdit">编辑</van-button>
     </van-cell>
     <van-grid :gutter="10" class="mygrid">
       <van-grid-item
         class="channel-item"
-        v-for="(channel,index) in mychannels"
+        v-for="(channel, index) in mychannels"
         :key="index"
-        icon="clear"
       >
-      <span class="text" slot="text" :class="{active:index===active}">{{channel.name}}</span>
+        <van-icon slot="icon" name="clear" v-show="isEdit"></van-icon>
+        <span class="text" slot="text" :class="{ active: index === active }">{{
+          channel.name
+        }}</span>
       </van-grid-item>
     </van-grid>
     <van-cell title="频道推荐" :border="false"></van-cell>
     <van-grid :gutter="10" class="recommand">
       <van-grid-item
         class="channel-item"
-       v-for="(channel,index) in recommendChannels"
+        v-for="(channel, index) in recommendChannels"
         :key="index"
         :text="channel.name"
         icon="plus"
@@ -44,15 +46,18 @@ export default {
   },
   data () {
     return {
-      allChannels: []// 所有频道
+      allChannels: [], // 所有频道
+      isEdit: false// 控制xx图标显示
     }
   },
   computed: {
     // 除去推荐的频道
+    // 计算属性会观测内部依赖数据的变化
+    // 发生变化回 计算属性重新执行
     recommendChannels () {
       const channels = []
-      this.allChannels.forEach(channel => {
-        const ret = this.mychannels.find(myChannel => {
+      this.allChannels.forEach((channel) => {
+        const ret = this.mychannels.find((myChannel) => {
           return myChannel.id === channel.id
         })
 
@@ -78,12 +83,12 @@ export default {
       } catch (err) {
         console.log('获取失败')
       }
+    },
+
+    // 把下面的频道推荐加入到我的频道
+    onAddChannels (channel) {
+      this.mychannels.push(channel)
     }
-  },
-  onAddChannels (channel) {
-    console.log('1111111')
-    console.log(channel)
-    this.mychannels.push(channel)
   }
 }
 </script>
@@ -93,7 +98,7 @@ export default {
   .channel-item {
     width: 100px;
     height: 90px;
-    /deep/ .van-grid-item__conten{
+    /deep/ .van-grid-item__conten {
       background-color: #93d5f4;
       .van-grid-item__text {
         color: #ffff;
@@ -111,23 +116,23 @@ export default {
   border: solid 1px pink;
 }
 
-/deep/.mygrid{
-   white-space: nowrap;
-   .van-icon-clear{
+/deep/.mygrid {
+  white-space: nowrap;
+  .van-icon-clear {
     position: absolute;
     right: -10px;
     top: -10px;
     z-index: 2;
     font-size: 30px;
     color: red;
-}
-.text{
-  font-size: 28px;
-  margin-top:0 ;
-}
-.active{
-  color: #d86262;
-}
+  }
+  .text {
+    font-size: 28px;
+    margin-top: 0;
+  }
+  .active {
+    color: #d86262;
+  }
 }
 
 /deep/.recommand {
@@ -141,10 +146,13 @@ export default {
       color: #d86262;
       margin-top: 0;
     }
-    .van-grid-item__text{
+    .van-grid-item__text {
       margin-top: 0;
     }
   }
+}
+/deep/.van-grid-item__icon-wrapper {
+  position: unset;
 }
 // /deep/.van-grid-item__content{
 //       flex-direction: row;
