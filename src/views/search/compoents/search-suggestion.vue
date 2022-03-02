@@ -1,12 +1,19 @@
 <template>
   <div class="search-suggestion">
-    <van-cell v-for="(text,index) in suggestions" :key="index" title="text" icon="search"></van-cell>
+    <van-cell
+      v-for="(text, index) in suggestions"
+      :key="index"
+      :title="text"
+      icon="search"
+    ></van-cell>
   </div>
 </template>
 
 <script>
 import { getSearchSuggestions } from '@/api/search.js'
 import { Toast } from 'vant'
+// 按需加载有好处：只会把使用到的成员加载到结果中
+import { debounce } from 'lodash'
 export default {
   name: 'SearchSuggestion',
   components: {},
@@ -25,10 +32,12 @@ export default {
   watch: {
     searchContent: {
       // 固定handler函数
-      handler (value) {
-        console.log('handler', value)
+      // handler (value) {
+      //   this.loadSearchSuggestions(value)
+      // },
+      handler: debounce(function (value) {
         this.loadSearchSuggestions(value)
-      },
+      }, 200),
       immediate: true
     }
   },
@@ -36,9 +45,11 @@ export default {
   mounted () {},
   methods: {
     async loadSearchSuggestions (q) {
+      console.log('2222')
       try {
         const { data } = await getSearchSuggestions(q)
         this.suggestions = data.data.options
+        console.log(data)
       } catch (err) {
         Toast('数据获取失败，请稍后重试', err)
       }
