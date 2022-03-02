@@ -23,6 +23,7 @@
       <SearchSuggestion
       v-else-if="searchContent"
       :search-content='searchContent'
+      @search="onSearch"
       ></SearchSuggestion>
       <!-- 联想建议 -->
 
@@ -59,6 +60,7 @@ export default {
     onSearch (val) {
       Toast(val)
       this.isResultShow = true
+      this.searchContent = val
     },
     onCancel () {
       Toast('返回首页')
@@ -69,6 +71,4 @@ export default {
 </script>
 
 <style scoped lang='less'>
-.search-container {
-}
 </style>
