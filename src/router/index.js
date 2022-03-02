@@ -58,8 +58,12 @@ const routes = [
         path: '/shopcard',
         name: 'shopcard',
         component: () => import('@/views/shopcard/shopcard.vue')
+      },
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import('@/views/search/search.vue')
       }
-
     ]
   }
 ]

@@ -101,7 +101,9 @@ export default {
           await addUserChannel({
             id: channel.id, // 频道id
             seq: this.mychannels.length // 序号
+
           })
+          Toast('添加频道成功')
         } catch (err) {
           console.log('保存失败，请重试')
           Toast('添加频道失败')
