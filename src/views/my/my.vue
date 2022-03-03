@@ -49,8 +49,12 @@
     <!-- 宫格导航 -->
     <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
-        <i slot="icon" class="heimatoutiao heimatoutiao-shoucang"></i>
-        <span slot="text" class="text">关注</span>
+        <!-- <i slot="ico2n" class="heimatoutiao heimatoutiao-shoucang"></i> -->
+        <svg class="icon" aria-hidden="true">
+            <use   xlink:href="#heimatoutiao-aixin"></use>
+        </svg>
+         <span  class="text">关注</span>
+
       </van-grid-item>
       <van-grid-item class="grid-item">
         <i slot="icon" class="heimatoutiao heimatoutiao-lishi"></i>
@@ -126,7 +130,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+ .icon{
+    font-size: 100px;
+  }
 .my-container {
+
   .header {
     height: 361px;
     background: url("~@/assets/海洋.png");
