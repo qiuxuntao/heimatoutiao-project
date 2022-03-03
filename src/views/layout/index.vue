@@ -51,6 +51,13 @@ export default {
 </script>
 
 <style scoped lang="less">
+
+.van-tabbar--fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 88px;
+}
 .van-tabbar-item {
   background: linear-gradient(to right, pink, #93d5f4);
   // border: 0.02667rem solid gold;
