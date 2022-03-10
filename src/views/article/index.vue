@@ -90,8 +90,16 @@
       >
       <van-icon name="comment-o" info="123" color="#777" />
       <!-- <van-icon color="#777" name="star-o" /> -->
-      <CollectArticle class="btn-item" v-model="article.is_collected"></CollectArticle>
-      <van-icon color="#777" name="good-job-o" />
+      <CollectArticle
+        class="btn-item"
+        v-model="article.is_collected"
+        :article-id="article.art_id"
+      ></CollectArticle>
+      <!-- <van-icon color="#777" name="good-job-o" /> -->
+      <LikeArticle
+        v-model="article.attitude"
+        :article-id="article.art_id"
+      ></LikeArticle>
       <van-icon name="share" color="#777777"></van-icon>
     </div>
     <!-- /底部区域 -->
@@ -103,6 +111,7 @@ import { getArticleById } from '@/api/article.js'
 import { Toast } from 'vant'
 import { addFollow, deleteFollow } from '@/api/user.js'
 import CollectArticle from '@/components/collect-article/index.vue'
+import LikeArticle from '@/components/like-article/index.vue'
 // ImagePreview
 // ImagePreview({
 //   images: [
@@ -116,7 +125,7 @@ import CollectArticle from '@/components/collect-article/index.vue'
 // })
 export default {
   name: 'ArticleIndex',
-  components: { CollectArticle },
+  components: { CollectArticle, LikeArticle },
   props: {
     articleId: {
       type: [Number, String, Object],
