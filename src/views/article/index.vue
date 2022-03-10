@@ -4,25 +4,22 @@
     <van-nav-bar
       class="page-nav-bar"
       left-arrow
-       @click-left="onClickLeft"
+      @click-left="onClickLeft"
       title="兴趣商城"
     ></van-nav-bar>
     <!-- /导航栏 -->
 
     <div class="main-wrap">
       <!-- 加载中 -->
-      <div  v-if="loading" class="loading-wrap">
-        <van-loading
-          color="#3296fa"
-          vertical
-        >加载中</van-loading>
+      <div v-if="loading" class="loading-wrap">
+        <van-loading color="#3296fa" vertical>加载中</van-loading>
       </div>
       <!-- /加载中 -->
 
       <!-- 加载完成-文章详情 -->
-      <div  v-else-if="article.title" class="article-detail">
+      <div v-else-if="article.title" class="article-detail">
         <!-- 文章标题 -->
-        <h1 class="article-title">{{article.title}}</h1>
+        <h1 class="article-title">{{ article.title }}</h1>
         <!-- /文章标题 -->
 
         <!-- 用户信息 -->
@@ -34,32 +31,44 @@
             fit="cover"
             :src="article.aut_photo"
           />
-          <div slot="title" class="user-name">{{article.aut_name}}</div>
-          <div slot="label" class="publish-date">{{article.pubdate | relativeTime}}</div>
+          <div slot="title" class="user-name">{{ article.aut_name }}</div>
+          <div slot="label" class="publish-date">
+            {{ article.pubdate | relativeTime }}
+          </div>
           <van-button
+            v-if="article.is_followed"
+            class="follow-btn"
+            round
+            size="small"
+            @click="onFollow"
+            >已关注</van-button
+          >
+
+          <van-button
+            v-else
             class="follow-btn"
             type="info"
             color="#3296fa"
             round
             size="small"
             icon="plus"
-          >关注</van-button>
-          <!-- <van-button
-            class="follow-btn"
-            round
-            size="small"
-          >已关注</van-button> -->
+            @click="onFollow"
+            >关注</van-button
+          >
         </van-cell>
         <!-- /用户信息 -->
 
         <!-- 文章内容 -->
-        <div class="article-content markdown-body" v-html="article.content"></div>
+        <div
+          class="article-content markdown-body"
+          v-html="article.content"
+        ></div>
         <van-divider>正文结束</van-divider>
       </div>
       <!-- /加载完成-文章详情 -->
 
       <!-- 加载失败：404 -->
-      <div v-else-if="errStatus===404" class="error-wrap">
+      <div v-else-if="errStatus === 404" class="error-wrap">
         <van-icon name="failure" />
         <p class="text">该资源不存在或已删除！</p>
       </div>
@@ -76,25 +85,13 @@
 
     <!-- 底部区域 -->
     <div class="article-bottom">
-      <van-button
-        class="comment-btn"
-        type="default"
-        round
-        size="small"
-      >写评论</van-button>
-      <van-icon
-        name="comment-o"
-        info="123"
-        color="#777"
-      />
-      <van-icon
-        color="#777"
-        name="star-o"
-      />
-      <van-icon
-        color="#777"
-        name="good-job-o"
-      />
+      <van-button class="comment-btn" type="default" round size="small"
+        >写评论</van-button
+      >
+      <van-icon name="comment-o" info="123" color="#777" />
+      <!-- <van-icon color="#777" name="star-o" /> -->
+      <CollectArticle class="btn-item" v-model="article.is_collected"></CollectArticle>
+      <van-icon color="#777" name="good-job-o" />
       <van-icon name="share" color="#777777"></van-icon>
     </div>
     <!-- /底部区域 -->
@@ -104,9 +101,22 @@
 <script>
 import { getArticleById } from '@/api/article.js'
 import { Toast } from 'vant'
+import { addFollow, deleteFollow } from '@/api/user.js'
+import CollectArticle from '@/components/collect-article/index.vue'
+// ImagePreview
+// ImagePreview({
+//   images: [
+//     'https://img01.yzcdn.cn/vant/apple-1.jpg',
+//     'https://img01.yzcdn.cn/vant/apple-2.jpg'
+//   ],
+//   startPosition: 1,
+//   onClose(){
+
+//   }
+// })
 export default {
   name: 'ArticleIndex',
-  components: {},
+  components: { CollectArticle },
   props: {
     articleId: {
       type: [Number, String, Object],
@@ -150,17 +160,41 @@ export default {
         Toast('获取数据失败')
         this.loading = false
       }
+    },
+    // 点击添加关注和取消关注
+    async onFollow () {
+      try {
+        if (this.article.is_followed) {
+          // 已关注，取消关注
+          const { data } = await deleteFollow(this.article.art_id)
+          console.log(data)
+          this.article.is_followed = false
+          Toast('取消关注成功')
+        } else {
+          // 点击添加关注
+          const { data } = await addFollow(this.article.aut_id.toString())
+          console.log(data)
+          Toast('关注成功')
+          this.article.is_followed = true
+        }
+      } catch (err) {
+        let message = '操作失败,请重试！'
+        if (err.response && err.response.status === 400) {
+          message = '你不能关注你自己'
+        }
+        Toast(message)
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-@import './github-markdown.css';
-.article-bottom{
-    z-index: 2;
-    height: 70px;
-  }
+@import "./github-markdown.css";
+.article-bottom {
+  z-index: 2;
+  height: 70px;
+}
 .article-container {
   .main-wrap {
     position: fixed;
@@ -227,7 +261,7 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    .van-icon {
+    /deep/.van-icon {
       font-size: 122px;
       color: #b4b4b4;
     }

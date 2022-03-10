@@ -44,7 +44,7 @@ export default {
 .van-goods-action {
     position: fixed;
     right: 0;
-    bottom: 100px;
+    bottom: 86px;
     left: 0;
     display: -webkit-box;
     display: -webkit-flex;

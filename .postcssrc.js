@@ -16,7 +16,8 @@ module.exports = {
       },
       // rootValue: 37.5,
       //* 表示所有
-      propList: ['*'],
+      propList: ['*']
+      // 配置不要转换的资源文件
       // exclude:'github-markdown'
     }
   }
