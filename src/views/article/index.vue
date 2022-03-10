@@ -64,7 +64,10 @@
           v-html="article.content"
         ></div>
         <van-divider>正文结束</van-divider>
-        <CommentList :source="article.art_id" @onload-success="totalCommentCount=$event.total_count"></CommentList>
+        <CommentList
+          :source="article.art_id"
+          @onload-success="totalCommentCount = $event.total_count"
+        ></CommentList>
       </div>
       <!-- /加载完成-文章详情 -->
 
@@ -86,7 +89,12 @@
 
     <!-- 底部区域 -->
     <div class="article-bottom">
-      <van-button class="comment-btn" type="default" round size="small"
+      <van-button
+        class="comment-btn"
+        type="default"
+        round
+        size="small"
+        @click="isPostShow = true"
         >写评论</van-button
       >
       <van-icon name="comment-o" :info="totalCommentCount" color="#777" />
@@ -104,6 +112,12 @@
       <van-icon name="share" color="#777777"></van-icon>
     </div>
     <!-- /底部区域 -->
+
+    <!-- 发布评论 -->
+    <van-popup v-model="isPostShow" position="bottom">
+      <CommentPost></CommentPost>
+    </van-popup>
+    <!-- 发布评论 -->
   </div>
 </template>
 
@@ -114,6 +128,7 @@ import { addFollow, deleteFollow } from '@/api/user.js'
 import CollectArticle from '@/components/collect-article/index.vue'
 import LikeArticle from '@/components/like-article/index.vue'
 import CommentList from '@/views/article/commpoents/comment-list.vue'
+import CommentPost from '@/views/article/commpoents/comment-post.vue'
 // ImagePreview
 // ImagePreview({
 //   images: [
@@ -127,7 +142,7 @@ import CommentList from '@/views/article/commpoents/comment-list.vue'
 // })
 export default {
   name: 'ArticleIndex',
-  components: { CollectArticle, LikeArticle, CommentList },
+  components: { CollectArticle, LikeArticle, CommentList, CommentPost },
   props: {
     articleId: {
       type: [Number, String, Object],
@@ -139,7 +154,8 @@ export default {
       article: [], // 文章详情
       loading: true, // 加载中的loading姿态
       errStatus: 0,
-      totalCommentCount: 0
+      totalCommentCount: 0,
+      isPostShow: false
     }
   },
   computed: {},
