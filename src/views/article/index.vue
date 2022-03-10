@@ -64,7 +64,7 @@
           v-html="article.content"
         ></div>
         <van-divider>正文结束</van-divider>
-        <CommentList :source="article.art_id"></CommentList>
+        <CommentList :source="article.art_id" @onload-success="totalCommentCount=$event.total_count"></CommentList>
       </div>
       <!-- /加载完成-文章详情 -->
 
@@ -89,7 +89,7 @@
       <van-button class="comment-btn" type="default" round size="small"
         >写评论</van-button
       >
-      <van-icon name="comment-o" info="123" color="#777" />
+      <van-icon name="comment-o" :info="totalCommentCount" color="#777" />
       <!-- <van-icon color="#777" name="star-o" /> -->
       <CollectArticle
         class="btn-item"
@@ -138,7 +138,8 @@ export default {
     return {
       article: [], // 文章详情
       loading: true, // 加载中的loading姿态
-      errStatus: 0
+      errStatus: 0,
+      totalCommentCount: 0
     }
   },
   computed: {},
