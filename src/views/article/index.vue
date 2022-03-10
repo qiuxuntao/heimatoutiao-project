@@ -64,6 +64,7 @@
           v-html="article.content"
         ></div>
         <van-divider>正文结束</van-divider>
+        <CommentList :source="article.art_id"></CommentList>
       </div>
       <!-- /加载完成-文章详情 -->
 
@@ -112,6 +113,7 @@ import { Toast } from 'vant'
 import { addFollow, deleteFollow } from '@/api/user.js'
 import CollectArticle from '@/components/collect-article/index.vue'
 import LikeArticle from '@/components/like-article/index.vue'
+import CommentList from '@/views/article/commpoents/comment-list.vue'
 // ImagePreview
 // ImagePreview({
 //   images: [
@@ -125,7 +127,7 @@ import LikeArticle from '@/components/like-article/index.vue'
 // })
 export default {
   name: 'ArticleIndex',
-  components: { CollectArticle, LikeArticle },
+  components: { CollectArticle, LikeArticle, CommentList },
   props: {
     articleId: {
       type: [Number, String, Object],
