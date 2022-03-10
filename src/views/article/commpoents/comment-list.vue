@@ -14,6 +14,7 @@ import { getComments } from '@/api/comment.js'
 import { Toast } from 'vant'
 import CommentItem from './comment-item.vue'
 export default {
+  name: 'CommentList',
   data () {
     return {
       list: [],
