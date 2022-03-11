@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang='less'>
 .van-nav-bar {
   background: linear-gradient(to right, pink, #93d5f4);
   border: 0.02667rem solid pink;
