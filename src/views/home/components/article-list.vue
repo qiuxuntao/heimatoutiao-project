@@ -41,6 +41,7 @@ export default {
   name: 'ArticleList',
   components: { AricleItem },
   props: {
+    // 传过来的一个channel
     channel: {
       type: Object,
       required: true
