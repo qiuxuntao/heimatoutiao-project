@@ -5,10 +5,8 @@
       class="top_dhl"
       title="用户信息"
       left-text="返回"
-      right-text="按钮"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onClickRight"
     />
     <!-- 导航栏 -->
 
@@ -100,9 +98,6 @@ export default {
     onClickLeft () {
       this.$router.back('/my')
       Toast('个人主页')
-    },
-    onClickRight () {
-      Toast('按钮')
     },
     async loadUserProfile () {
       try {

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div>
+      <van-nav-bar
+  title="购物车"
+  left-text="返回"
+  right-text="商城"
+  left-arrow
+  @click-left="onClickLeft"
+   @click-right="onClickRight"
+/>
+    </div>
     <div class="swipe">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -88,6 +98,12 @@ export default {
     },
     addr () {
       this.$router.push('/address')
+    },
+    onClickLeft () {
+      this.$router.back()
+    },
+    onClickRight () {
+      this.$router.push('/shops')
     }
     // total_price () {
     //   const totalPrice = 0
@@ -121,11 +137,6 @@ export default {
   display: inline-block;
   width: 100%;
   height: 380px;
-}
-
-.van-submit-bar {
-  position: fixed;
-  bottom: 90px;
 }
 
 .van-submit-bar__button--danger {

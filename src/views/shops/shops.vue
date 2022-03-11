@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div>
+      <van-nav-bar
+  title="商城"
+  left-text="返回"
+  right-text="购物车"
+  left-arrow
+  @click-left="onClickLeft"
+   @click-right="onClickRight"
+/>
+    </div>
     <div class="swipe">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -68,6 +78,12 @@ export default {
     },
     shopCard () {
       this.$router.push('/shopcard')
+    },
+    onClickLeft () {
+      this.$router.back()
+    },
+    onClickRight () {
+      this.$router.push('/shopcat')
     }
   },
   computed: {},

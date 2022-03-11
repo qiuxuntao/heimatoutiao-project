@@ -10,10 +10,25 @@ const routes = [
     component: () => import('@/views/login/index.vue')
   },
   {
+    path: '/video',
+    name: 'video',
+    component: () => import('@/views/video/video.vue')
+  },
+  {
     path: '/user/profile',
     name: 'user-profile',
     component: () => import('@/views/user-profile/index.vue')
 
+  },
+  {
+    path: '/shops',
+    name: 'shops',
+    component: () => import('@/views/shops/shops.vue')
+  },
+  {
+    path: '/shopcat',
+    name: 'shopcat',
+    component: () => import('@/views/shopcat/shopcat.vue')
   },
   {
     path: '/',
@@ -25,21 +40,7 @@ const routes = [
         name: 'home',
         component: () => import('@/views/home/home.vue')
       },
-      {
-        path: '/shops',
-        name: 'shops',
-        component: () => import('@/views/shops/shops.vue')
-      },
-      {
-        path: '/video',
-        name: 'video',
-        component: () => import('@/views/video/video.vue')
-      },
-      {
-        path: '/shopcat',
-        name: 'shopcat',
-        component: () => import('@/views/shopcat/shopcat.vue')
-      },
+
       {
         path: '/my',
         name: 'my',

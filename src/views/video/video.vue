@@ -1,5 +1,13 @@
   <template>
   <div class="demo">
+    <van-nav-bar
+  title="购物车"
+  left-text="返回"
+  right-text="首页"
+  left-arrow
+  @click-left="onClickLeft"
+   @click-right="onClickRight"
+/>
     <video-player
       class="video-player vjs-custom-skin"
       ref="videoPlayer"
@@ -47,6 +55,14 @@ export default {
   },
   components: {
     videoPlayer
+  },
+  methods: {
+    onClickLeft () {
+      this.$router.back()
+    },
+    onClickRight () {
+      this.$router.push('/')
+    }
   }
 }
 </script>
