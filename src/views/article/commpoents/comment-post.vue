@@ -12,15 +12,23 @@
     />
     <van-button
       class="post-btn"
+      @click="onPostComment"
     >发布</van-button>
   </div>
 </template>
 
 <script>
+import { addComment } from '@/api/comment.js'
+import { Toast } from 'vant'
 export default {
   name: 'CommentPost',
   components: {},
-  props: {},
+  props: {
+    target: {
+      type: [Number, String, Object],
+      required: true
+    }
+  },
   data () {
     return {
       message: ''
@@ -30,7 +38,32 @@ export default {
   watch: {},
   created () {},
   mounted () {},
-  methods: {}
+  methods: {
+    async  onPostComment () {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClick: true, // 禁止背景点击
+        duration: 0 // 持续时间，默认2000，如果为0，持续展示
+      })
+      try {
+        const { data } = await addComment({
+          target: this.target, // 评论的目标id（评论文章即为文章id，对评论进行回复则为评论id）
+          content: this.message, // 评论内容
+          art_id: null// 文章id，对评论内容发表回复时，需要传递此参数，表明所属文章id。对文章进行评论，不要传此参数。
+        })
+
+        console.log('发布的内容', data)
+        Toast('发布成功')
+        // 清空文本框
+
+        this.message = ''
+        this.$emit('post-success', data.data)
+      } catch (err) {
+        console.log(err)
+        Toast('评论失败,请重试')
+      }
+    }
+  }
 }
 </script>
 

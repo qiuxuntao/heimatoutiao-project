@@ -67,6 +67,7 @@
         <CommentList
           :source="article.art_id"
           @onload-success="totalCommentCount = $event.total_count"
+         :list='commentsList'
         ></CommentList>
       </div>
       <!-- /加载完成-文章详情 -->
@@ -115,7 +116,7 @@
 
     <!-- 发布评论 -->
     <van-popup v-model="isPostShow" position="bottom">
-      <CommentPost></CommentPost>
+      <CommentPost :target="article.art_id" @post-success='onPostSuccess'></CommentPost>
     </van-popup>
     <!-- 发布评论 -->
   </div>
@@ -155,7 +156,8 @@ export default {
       loading: true, // 加载中的loading姿态
       errStatus: 0,
       totalCommentCount: 0,
-      isPostShow: false
+      isPostShow: false,
+      commentsList: []// 评论列表
     }
   },
   computed: {},
@@ -212,6 +214,13 @@ export default {
         }
         Toast(message)
       }
+    },
+    // 接收评论的自定义事件
+    onPostSuccess (data) {
+      // 关闭弹出层
+      this.isPostShow = false
+      // 将发布的内容显示到顶部
+      this.commentsList.unshift(data.new_obj)
     }
   }
 }

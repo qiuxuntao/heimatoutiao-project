@@ -17,7 +17,7 @@ export default {
   name: 'CommentList',
   data () {
     return {
-      list: [],
+      // list: [],
       loading: false,
       finished: false,
       offset: null, // 获取下一页标记
@@ -29,6 +29,10 @@ export default {
     source: {
       type: [Number, String, Object],
       required: true
+    },
+    list: {
+      type: Array,
+      default: () => []
     }
   },
   components: { CommentItem },
