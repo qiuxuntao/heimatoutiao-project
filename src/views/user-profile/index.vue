@@ -23,16 +23,51 @@
         @click="isUpdateNameShow = true"
         is-link
       />
-      <van-cell title="性别" :value="user.gender === 0 ? '男' : '女'" is-link />
-      <van-cell title="生日" :value="user.birthday" is-link />
+      <van-cell title="性别" :value="user.gender === 0 ? '男' : '女'" @click="isUpdateGenderShow=true" is-link />
+      <van-cell
+        title="生日"
+        :value="user.birthday"
+        @click="isUpdateBirthdayShow = true"
+        is-link
+      />
     </van-cell-group>
     <!-- 个人信息 -->
 
     <!-- 编辑昵称 -->
-    <van-popup v-model="isUpdateNameShow" style="height: 100%" position="bottom">
-    <updateName @close='isUpdateNameShow=false' v-model='user.name' v-if="isUpdateNameShow"></updateName
+    <van-popup
+      v-model="isUpdateNameShow"
+      style="height: 100%"
+      position="bottom"
+    >
+      <updateName
+        @close="isUpdateNameShow = false"
+        v-model="user.name"
+        v-if="isUpdateNameShow"
+      >
+      </updateName
     ></van-popup>
-    <!-- 编辑昵称 -->
+    <!-- /编辑昵称 -->
+
+    <!-- 编辑性别 -->
+    <van-popup v-model="isUpdateGenderShow" position="bottom">
+      <updateGender
+        v-if="isUpdateGenderShow"
+        v-model="user.gender"
+        @close="isUpdateGenderShow = false"
+      >
+      </updateGender>
+    </van-popup>
+    <!-- /编辑性别 -->
+
+    <!-- 编辑生日 -->
+    <van-popup v-model="isUpdateBirthdayShow" position="bottom">
+      <updateBirthday
+        v-if="isUpdateBirthdayShow"
+        v-model="user.birthday"
+        @close="isUpdateBirthdayShow = false"
+      ></updateBirthday>
+    </van-popup>
+    <!-- /编辑生日 -->
   </div>
 </template>
 
@@ -40,14 +75,18 @@
 import { Toast } from 'vant'
 import { getUserProfile } from '@/api/user.js'
 import updateName from '@/views/user-profile/components/update-name.vue'
+import updateBirthday from '@/views/user-profile/components/update-birthday.vue'
+import updateGender from '@/views/user-profile/components/update-gender.vue'
 export default {
   name: 'UserProfile',
-  components: { updateName },
+  components: { updateName, updateBirthday, updateGender },
   props: {},
   data () {
     return {
       user: {}, // 个人信息,
-      isUpdateNameShow: false // 弹出层的是否弹出
+      isUpdateNameShow: false, // 弹出层的是否弹出
+      isUpdateBirthdayShow: false, // 弹出层的是否弹出
+      isUpdateGenderShow: false// 弹出层的是否弹出
     }
   },
   computed: {},
