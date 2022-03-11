@@ -32,7 +32,7 @@ export default {
     },
     list: {
       type: Array,
-      default: () => []
+      default: () => []// 子组件需要自己用，父组件需要给父组件用，不会影响
     }
   },
   components: { CommentItem },
