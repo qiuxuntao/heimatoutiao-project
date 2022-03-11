@@ -71,3 +71,13 @@ export const deleteFollow = userId => {
     url: `/v1_0/user/followings/${userId}`
   })
 }
+
+/**
+ * 获取用户个人资料
+ */
+export const getUserProfile = target => {
+  return request({
+    method: 'GET',
+    url: '/v1_0/user/profile'
+  })
+}

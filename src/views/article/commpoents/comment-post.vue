@@ -1,5 +1,6 @@
 <template>
   <div class="comment-post">
+    <!-- trim  去除空格 -->
     <van-field
       class="post-field"
       v-model.trim="message"
@@ -10,6 +11,7 @@
       placeholder="请输入留言"
       show-word-limit
     />
+    <!-- disabled 文本框内容为空就禁用发布按钮 -->
     <van-button
       class="post-btn"
       @click="onPostComment"

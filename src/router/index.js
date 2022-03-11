@@ -10,6 +10,12 @@ const routes = [
     component: () => import('@/views/login/index.vue')
   },
   {
+    path: '/user/profile',
+    name: 'user-profile',
+    component: () => import('@/views/user-profile/index.vue')
+
+  },
+  {
     path: '/',
     name: 'layout',
     component: () => import('@/views/layout/index.vue'),
@@ -70,6 +76,12 @@ const routes = [
         component: () => import('@/views/article/index.vue'),
         props: true// 将路由动态参数映射到组件的 props 中，更推荐这种做法
       }
+      // {
+      //   path: '/user/profile',
+      //   name: 'user-profile',
+      //   component: () => import('@/views/user-profile/index.vue')
+
+      // }
 
     ]
   }
