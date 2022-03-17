@@ -59,6 +59,7 @@ export default {
   methods: {
     onSearch (val) {
       Toast(val)
+      // 搜索内容
       this.isResultShow = true
       this.searchContent = val
     },

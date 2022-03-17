@@ -10,18 +10,27 @@
     />
     <!-- 导航栏 -->
 
+    <!-- 头像弹窗 -->
+    <input type="file" hidden  ref="file" @change="onFileChange"/>
+     <!-- 头像弹窗 /-->
+
     <!-- 个人信息 -->
     <van-cell-group>
-      <van-cell title="头像" is-link>
+      <van-cell title="头像" is-link @click="$refs.file.click()">
         <van-image round width="30" height="30" fit="cover" :src="user.photo" />
       </van-cell>
-      <van-cell
+      <van-cells
         title="昵称"
         :value="user.name"
         @click="isUpdateNameShow = true"
         is-link
       />
-      <van-cell title="性别" :value="user.gender === 0 ? '男' : '女'" @click="isUpdateGenderShow=true" is-link />
+      <van-cell
+        title="性别"
+        :value="user.gender === 0 ? '男' : '女'"
+        @click="isUpdateGenderShow = true"
+        is-link
+      />
       <van-cell
         title="生日"
         :value="user.birthday"
@@ -66,6 +75,18 @@
       ></updateBirthday>
     </van-popup>
     <!-- /编辑生日 -->
+
+        <!-- 编辑头像 -->
+    <van-popup v-model="isUpdatePhotoShow" position="bottom" style="height:100%">
+      <updatePhoto
+        v-if="isUpdatePhotoShow"
+        v-model="user.photo"
+        @close="isUpdatePhotoShow = false"
+        :img="img"
+        @update-photo="user.photo=$event"
+      ></updatePhoto>
+    </van-popup>
+    <!-- /编辑头像 -->
   </div>
 </template>
 
@@ -75,16 +96,19 @@ import { getUserProfile } from '@/api/user.js'
 import updateName from '@/views/user-profile/components/update-name.vue'
 import updateBirthday from '@/views/user-profile/components/update-birthday.vue'
 import updateGender from '@/views/user-profile/components/update-gender.vue'
+import updatePhoto from '@/views/user-profile/components/update-photo.vue'
 export default {
   name: 'UserProfile',
-  components: { updateName, updateBirthday, updateGender },
+  components: { updateName, updateBirthday, updateGender, updatePhoto },
   props: {},
   data () {
     return {
       user: {}, // 个人信息,
       isUpdateNameShow: false, // 弹出层的是否弹出
       isUpdateBirthdayShow: false, // 弹出层的是否弹出
-      isUpdateGenderShow: false// 弹出层的是否弹出
+      isUpdateGenderShow: false, // 弹出层的是否弹出
+      isUpdatePhotoShow: false,
+      img: null
     }
   },
   computed: {},
@@ -109,6 +133,23 @@ export default {
       } catch (err) {
         Toast('获取个人信息失败')
       }
+    },
+    // 获取头像
+    onFileChange () {
+      // 获取文件对象
+
+      const file = this.$refs.file.files[0]
+      console.log(file)
+      // 急于文章对象获取blob数据
+      // 图片路径
+      const data = window.URL.createObjectURL(file)
+      console.log(data)
+      // 文件信息路径给img 传给头像更新组件
+      this.img = data
+      // 展示头像弹出层
+      this.isUpdatePhotoShow = true
+      // file-input 如果选了同一个文件不会触发 把value设置为空
+      this.$refs.file.value = ''
     }
   }
 }

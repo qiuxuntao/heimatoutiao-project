@@ -61,7 +61,7 @@ export default {
         this.$toast.fail('更新失败')
       }
     },
-
+    // 得到性别的索引
     onPickerChange (picker, value, index) {
       this.localGender = index
     }
